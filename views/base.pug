@@ -1,0 +1,22 @@
+//- base.pug
+html
+    head
+        title #{title}
+        block scripts
+            script(src='../public/js/jquery-3.5.1.min.js')
+            link(rel='stylesheet', href='/css/bootstrap.min.css', type='text/css')
+    body
+        block nav
+            #nav
+                div
+                    nav(class="navbar navbar-expand-lg navbar-dark bg-dark")
+                        ul(class="navbar-nav mr-auto")
+                            li(class="nav-item")
+                                a(class="nav-link" href="/stripe") Stripe
+                            li(class="nav-item")
+                                a(class="nav-link" href="/paypal") Paypal
+        block content
+            div(class="custom-content")
+        block foot
+            #footer
+                p some footer content
