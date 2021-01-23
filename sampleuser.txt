@@ -1,0 +1,6 @@
+firstname: Anton
+lastname: Girdeux
+email: girdeux@blackbaton.de
+password: examplepassword
+zipcode: 31004
+municipality: Toulouse
