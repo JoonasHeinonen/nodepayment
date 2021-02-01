@@ -22,10 +22,13 @@ const dotenv = require('dotenv');
 const express = require('express');
 const expressSession = require('express-session');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const paypal = require('paypal-rest-sdk');
 const Stripe = require('stripe')(stripe_secret_key);
 
 const router = require('./routes/index');
+
+const User = require("./models/user"); 
 
 paypal.configure({
     'mode': 'sandbox',
@@ -61,9 +64,17 @@ app.use(expressSession({
 }));
 app.use(connectFlash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
     res.locals.errors = req.flash("error");
     res.locals.successes = req.flash("success");
+    res.locals.loggedIn = req.isAuthenticated();
+    res.locals.currentUser = req.user;
     next();
 });
 

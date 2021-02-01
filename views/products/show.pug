@@ -1,0 +1,17 @@
+extends ../base.pug
+
+block content
+    - var fullPrice = (product.productPrice.major) + "," + (product.productPrice.minor)
+
+    
+        div(class="col-md-6 mx-auto mt-4 pt-3 border box-white")
+            div(class="text-center")
+                h2= product.productName
+            h5= "Price: " + fullPrice + " €"
+            p= product.productDescription
+            if product.productQuantity > 0
+                p #{product.productQuantity} products available currently!
+                if loggedIn
+                    button(class="btn btn-primary") Add
+            else
+                p No products available currently.

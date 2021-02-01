@@ -1,3 +1,5 @@
 extends ../base.pug
 
 block content
+    each user in users
+        h3= (user.name.first + " " + user.name.last )

@@ -1,0 +1,23 @@
+extends ../base.pug
+
+block content
+    - var fullname = (user.name.first) + " " + (user.name.last)
+
+    div(class="col-md-6 mx-auto border mt-4 pt-3 border box-white")
+        h3= "User information for " + fullname + ":"
+        ul.list-unstyled
+            li= "Full name: " + fullname
+            li= "Email: " + user.email
+            li= "Municipality: " + user.zipCode + ", " + user.municipality
+
+        h3= "Shopping cart information for " + fullname + "."
+        if user.shoppingCart.length == 0
+            p No products in shopping cart currently.
+        else
+            div(class="card" style="width: 18rem;")
+                each product in user.shoppingCart
+                    ul(class="list-group list-group-flush")
+                        p New product!
+                            li.list-group-item= product
+    </ul>
+    </div>

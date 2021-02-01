@@ -1,0 +1,16 @@
+extends ../base.pug
+
+block content
+    div#products
+        if products
+            h2 List of the products
+                div(class="col-md-6 mx-auto mt-4 pt-3 box-white")
+                    div(style="display: inline;")
+                        each product in products
+                            div(class="card" style="width: 18rem; margin: 1rem;")
+                                div.card-body
+                                    p(class="card-title")= product.productName
+                                    h5(class="card-text")= product.productDescription
+                                    a(href=`/products/${product._id}` class="btn btn-primary") Review
+        else
+            h2 No products available.

@@ -26,6 +26,9 @@ var userSchema = new Schema({
     municipality: {
         type: String,
     },
+    shoppingCart: {
+        type: Array
+    }
 });
 
 userSchema.pre('save', function(next) {

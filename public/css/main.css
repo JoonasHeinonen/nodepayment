@@ -1,3 +1,80 @@
-#content {
-    min-height: 80vh;
+body {
+    background-color: white;
+}
+
+#nav {
+    z-index: 999;
+}
+
+#footer {
+    z-index: 999;
+    position: relative;
+}
+
+.bottom {
+    position: fixed;
+}
+
+.custom-input-group {
+    max-width: 20em;
+    min-width: 20em;
+}
+
+.custom-input-group * {
+    margin-right: 1em;
+}
+
+.oblique-box-wrapper-1 {
+    background-color: lightskyblue;
+    width:100%;
+    z-index: -999;
+    padding: 1em;
+    margin-top: -1em;
+    transform:skew(0deg,-1deg);
+    -ms-transform:skew(0deg,-1deg);
+    -webkit-transform:skew(0deg,-1deg); 
+}
+
+.oblique-box-content-1 {
+    color: white;
+    margin-top: 1em;
+    text-align: center;
+    transform:skew(0deg,+1deg);
+    -ms-transform:skew(0deg,+1deg);
+    -webkit-transform:skew(0deg,+1deg); 
+}
+
+.oblique-box-wrapper-2 {
+    background-color: lightskyblue;
+    width:100%;
+    z-index: -999999;
+    padding: 6em;
+    margin-top: -1em;
+    margin-bottom: -1em;
+    transform:skew(0deg,+1deg);
+    -ms-transform:skew(0deg,+1deg);
+    -webkit-transform:skew(0deg,+1deg); 
+}
+
+.oblique-box-content-2 {
+    color: white;
+    text-align: center;
+    transform:skew(0deg,-1deg);
+    -ms-transform:skew(0deg,-1deg);
+    -webkit-transform:skew(0deg,-1deg); 
+}
+
+.signup-wrapper, .signup-content {
+    padding: 1em;
+    margin: 1em;
+}
+
+.img-float-right {
+    width: 10em;
+    float: right;
+    margin-bottom: 5em
+}
+
+.box-white {
+    background-color: white;
 }

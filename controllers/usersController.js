@@ -15,6 +15,18 @@ const getUserParams = body => {
     };
 
 module.exports = {
+    index: (req, res, next) => {
+        User.find()
+            .then(users => {
+                res.locals.users = users;
+                next();
+        })
+        .catch(error => {
+            console.log(`Error fetching users: ${error.message}`);
+            next(error);
+        });
+    },
+
     indexView: (req, res, next) => {
         res.render('../views/users/index.pug');
     },
@@ -23,34 +35,18 @@ module.exports = {
         res.render('../views/users/login.pug');
     },
 
-    authenticate: (req, res, next) => {
-        User.findOne({
-            email: req.body.email
-        })
-            .then(user => {
-                if (user) {
-                    user.passwordComparison(req.body.password)
-                        .then(passwordsMatch => {
-                            if (passwordsMatch) {
-                                res.locals.redirect = `/payment/stripe`;
-                                req.flash('success', `${user.email} has logged in successfully!`);
-                                res.locals.user = user;
-                            } else {
-                                req.flash('error','The password given was incorrect!');
-                                res.locals.redirect = '/users/login';
-                            }
-                            next();
-                        });
-                } else {
-                    req.flash('error','The email given has not been registered to our serivce!');
-                    res.locals.redirect = '/users/login';
-                    next();
-                }
-            })
-            .catch(error => {
-                console.log(`Error logging in user: ${error.message}`);
-                next(error);
-            });
+    authenticate: passport.authenticate('local', {
+        failureRedirect: '/users/login',
+        failureFlash: 'Login was insuccessful.',
+        successRedirect: `/payment/stripe`,
+        successFlash: 'Logged'
+    }),
+
+    logout: (req, res, next) => {
+        req.logout();
+        req.flash('success', 'You have been logged out!');
+        res.locals.redirect = '/users/login';
+        next();
     },
 
     signup: (req, res, next) => {
@@ -78,6 +74,44 @@ module.exports = {
                 next();
             }
         })
+    },
+
+    show: (req, res, next) => {
+        let userId = req.params.id;
+
+        User.findById(userId)
+            .then(user => {
+                res.locals.user = user;
+                next();
+            })
+            .catch(error => {
+                console.log(`Error fetching user by ID: ${error.message}`);
+                next(error);
+            });
+    },
+
+    showView: (req, res, next) => {
+        res.render('users/show');
+    },
+
+    shoppingCartView: (req, res, next) => {
+        let userId = req.params.id;
+
+        console.log('This here is called!');
+
+        User.findById(userId)
+            .then(user => {
+                res.locals.user = user;
+                next();
+            })
+            .catch(error => {
+                console.log(`Error fetching shopping cart by user ID: ${error.message}`);
+                next(error);
+            });
+    },
+
+    shoppingCart: (req, res, next) => {
+        res.render('users/shoppingcart');
     },
 
     redirectView: (req, res, next) => {
