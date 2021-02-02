@@ -6,23 +6,23 @@ block content
             div.oblique-box-content-1
                 h1 Welcome to <br>Nodepayment
                 br 
-                p The web shop and service tailored just for you <br> who want the the cutest and most adorable teddy bears in the market!
+                p The web service to test different payment gateways!
         div.signup-wrapper
             div.signup-content
-                img(src="/images/polar-bear-155118_1280.png" class="img-float-right")
                 #user
                 if loggedIn
                     p Welcome to our service, 
                         a(href=`/users/${currentUser._id}`)= " " + currentUser.name.first + " " + currentUser.name.last
+                        div.text-center
+                            a(class="btn btn-primary" href="/users/checkout" role="button") Checkout
                     br 
                 else
                     p Please login to our service, if you're registered! If you don't have an account yet, you are most welcome to create one!
                     <a class="btn btn-primary" href="/users/login" role="button">Login</a>  
                     <a class="btn btn-outline-primary" href="/users/signup" role="button">Signup</a>
-                                p Feel free to explore our products and search for the teddy bear fitting for your interests!
-                div(class="input-group custom-input-group")
-                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                                <a type="button" href="/products" class="btn btn-primary">search</a>
+                br 
+                br
+                br 
                 br 
                 br
         div.oblique-box-wrapper-2

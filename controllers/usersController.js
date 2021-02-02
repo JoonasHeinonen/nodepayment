@@ -38,8 +38,8 @@ module.exports = {
     authenticate: passport.authenticate('local', {
         failureRedirect: '/users/login',
         failureFlash: 'Login was insuccessful.',
-        successRedirect: `/payment/stripe`,
-        successFlash: 'Logged'
+        successRedirect: `/`,
+        successFlash: 'Logged in successfully!'
     }),
 
     logout: (req, res, next) => {
@@ -94,24 +94,8 @@ module.exports = {
         res.render('users/show');
     },
 
-    shoppingCartView: (req, res, next) => {
-        let userId = req.params.id;
-
-        console.log('This here is called!');
-
-        User.findById(userId)
-            .then(user => {
-                res.locals.user = user;
-                next();
-            })
-            .catch(error => {
-                console.log(`Error fetching shopping cart by user ID: ${error.message}`);
-                next(error);
-            });
-    },
-
-    shoppingCart: (req, res, next) => {
-        res.render('users/shoppingcart');
+    payment: (req, res, next) => {
+        res.render('users/checkout');
     },
 
     redirectView: (req, res, next) => {

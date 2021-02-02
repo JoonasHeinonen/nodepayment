@@ -10,6 +10,6 @@ router.get('/logout', usersController.logout, usersController.redirectView);
 router.get('/signup', usersController.signup);
 router.post('/create', usersController.create, usersController.redirectView);
 router.get('/:id', usersController.show, usersController.showView);
-router.get('/:id/shoppingcart', usersController.shoppingCart, usersController.shoppingCartView);
+router.get('/checkout', usersController.checkout);
 
 module.exports = router;
